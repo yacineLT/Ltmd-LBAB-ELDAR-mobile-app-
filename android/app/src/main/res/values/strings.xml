@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">لباب الدار</string>
+    <string name="title_activity_main">لباب الدار</string>
+    <string name="package_name">dz.lbabdar.app</string>
+    <string name="custom_url_scheme">dz.lbabdar.app</string>
+</resources>

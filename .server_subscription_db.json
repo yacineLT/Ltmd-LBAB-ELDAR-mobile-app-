@@ -1,0 +1,722 @@
+{
+  "plans": [
+    {
+      "id": "plan_free",
+      "tier": "FREE",
+      "name": "الخطة المجانية (FREE)",
+      "description": "الباقة المبدئية لاستكشاف منصة لباب الدار وبدء العمل التجاري",
+      "price": 0,
+      "billingPeriod": "MONTHLY",
+      "durationDays": 30,
+      "features": [
+        "حتى 20 طلباً شهرياً",
+        "متجر إلكتروني أساسي مع قائمة المنتجات",
+        "إشعارات الطلبات الفورية",
+        "دعم فني عبر البريد الإلكتروني"
+      ],
+      "isActive": true,
+      "orderLimitPerMonth": 20,
+      "commissionDiscountPercent": 0
+    },
+    {
+      "id": "plan_pro",
+      "tier": "PRO",
+      "name": "الخطة الاحترافية (PRO)",
+      "description": "الخيار الأكثر شعبية للمتاجر والكباتن الباحثين عن النمو السريع",
+      "price": 999,
+      "billingPeriod": "MONTHLY",
+      "durationDays": 30,
+      "features": [
+        "طلبات غير محدودة شهرياً",
+        "خصم 25% على عمولة المنصة",
+        "شارة متجر موثّق ومرخّص (Verified)",
+        "أولوية ظهور في نتائج البحث وتوصيات الصفحة الرئيسية",
+        "دعم فني متميز ومباشر على مدار الساعة"
+      ],
+      "isActive": true,
+      "orderLimitPerMonth": "UNLIMITED",
+      "commissionDiscountPercent": 25,
+      "badge": "الأكثر طلباً"
+    },
+    {
+      "id": "plan_business",
+      "tier": "BUSINESS",
+      "name": "خطة الأعمال (BUSINESS)",
+      "description": "للمتاجر الكبرى، السلاسل التجارية وشركاء التوصيل الحصريين",
+      "price": 1999,
+      "billingPeriod": "MONTHLY",
+      "durationDays": 30,
+      "features": [
+        "كافة مميزات باقة PRO",
+        "خصم 50% على عمولة المنصة للمبيعات والتوصيل",
+        "واجهة بنر إعلاني مخصص وشهري للمتجر في أعلى التطبيق",
+        "تقارير مالية وتصدير تحليلي متقدم للإكسل",
+        "مدير حساب خاص لخدمة المتجر"
+      ],
+      "isActive": true,
+      "orderLimitPerMonth": "UNLIMITED",
+      "commissionDiscountPercent": 50,
+      "badge": "أقصى توفير"
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay_ORD_1789563796620_AYW488",
+      "orderId": "ORD_1789563796620_AYW488",
+      "userId": "user_e2e_test",
+      "userEmail": "e2e@lbabeldar.dz",
+      "userName": "Test Merchant",
+      "userRole": "MERCHANT",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "amount": 999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "paid",
+      "createdAt": "2026-09-16T13:03:16.620Z",
+      "updatedAt": "2026-09-16T13:03:16.634Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563796621_5920",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563796620_AYW488&invoiceId=SP_INV_1789563796621_5920&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+      "verifiedAt": "2026-09-16T13:03:16.628Z",
+      "verificationSource": "return_url",
+      "transactionReference": "SATIM_TEST_1789563796633",
+      "paidAt": "2026-09-16T13:03:16.634Z"
+    },
+    {
+      "id": "pay_ORD_1789563785540_X46FSF",
+      "orderId": "ORD_1789563785540_X46FSF",
+      "userId": "user_e2e_test",
+      "userEmail": "e2e@lbabeldar.dz",
+      "userName": "Test Merchant",
+      "userRole": "MERCHANT",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "amount": 999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "pending",
+      "createdAt": "2026-09-16T13:03:05.540Z",
+      "updatedAt": "2026-09-16T13:03:05.561Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563785541_5671",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563785540_X46FSF&invoiceId=SP_INV_1789563785541_5671&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+      "verifiedAt": "2026-09-16T13:03:05.561Z",
+      "verificationSource": "return_url",
+      "transactionReference": "SATIM_REF_SP_INV_1789563785541_5671"
+    },
+    {
+      "id": "pay_ORD_1789563762279_4KBZJT",
+      "orderId": "ORD_1789563762279_4KBZJT",
+      "userId": "user_e2e_test",
+      "userEmail": "e2e@lbabeldar.dz",
+      "userName": "Test Merchant",
+      "userRole": "MERCHANT",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "amount": 999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "pending",
+      "createdAt": "2026-09-16T13:02:42.279Z",
+      "updatedAt": "2026-09-16T13:02:42.295Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563762279_4522",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563762279_4KBZJT&invoiceId=SP_INV_1789563762279_4522&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+      "verifiedAt": "2026-09-16T13:02:42.295Z",
+      "verificationSource": "return_url",
+      "transactionReference": "SATIM_REF_SP_INV_1789563762279_4522"
+    },
+    {
+      "id": "pay_ORD_1789563753254_6ERDLG",
+      "orderId": "ORD_1789563753254_6ERDLG",
+      "userId": "user_e2e_test",
+      "userEmail": "e2e@lbabeldar.dz",
+      "userName": "Test Merchant",
+      "userRole": "MERCHANT",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "amount": 999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "pending",
+      "createdAt": "2026-09-16T13:02:33.254Z",
+      "updatedAt": "2026-09-16T13:02:33.255Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563753255_7131",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563753254_6ERDLG&invoiceId=SP_INV_1789563753255_7131&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)"
+    },
+    {
+      "id": "pay_ORD_1789563718234_UE63KV",
+      "orderId": "ORD_1789563718234_UE63KV",
+      "userId": "user_e2e_test",
+      "userEmail": "e2e@lbabeldar.dz",
+      "userName": "Test Merchant",
+      "userRole": "MERCHANT",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "amount": 999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "pending",
+      "createdAt": "2026-09-16T13:01:58.234Z",
+      "updatedAt": "2026-09-16T13:01:58.235Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563718235_3727",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563718234_UE63KV&invoiceId=SP_INV_1789563718235_3727&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)"
+    },
+    {
+      "id": "pay_ORD_1789563430313_OT2UZD",
+      "orderId": "ORD_1789563430313_OT2UZD",
+      "userId": "test_merchant_3",
+      "userEmail": "merchant3@example.com",
+      "userName": "أمينة للتجارة",
+      "userRole": "MERCHANT",
+      "planId": "plan_business",
+      "planTier": "BUSINESS",
+      "planName": "خطة الأعمال (BUSINESS)",
+      "amount": 1999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "paid",
+      "createdAt": "2026-09-16T12:57:10.313Z",
+      "updatedAt": "2026-09-16T12:57:39.789Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563430315_30",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563430313_OT2UZD&invoiceId=SP_INV_1789563430315_30&amount=1999&planName=%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20(BUSINESS)",
+      "verifiedAt": "2026-09-16T12:57:39.789Z",
+      "verificationSource": "webhook",
+      "transactionReference": "SATIM_REF_SP_INV_1789563430315_30",
+      "paidAt": "2026-09-16T12:57:39.789Z"
+    },
+    {
+      "id": "pay_ORD_1789563413349_GWCO1E",
+      "orderId": "ORD_1789563413349_GWCO1E",
+      "userId": "test_merchant_2",
+      "userEmail": "merchant2@example.com",
+      "userName": "سمير بلخير",
+      "userRole": "MERCHANT",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "amount": 999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "paid",
+      "createdAt": "2026-09-16T12:56:53.349Z",
+      "updatedAt": "2026-09-16T12:56:59.479Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563413350_2931",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563413349_GWCO1E&invoiceId=SP_INV_1789563413350_2931&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+      "verifiedAt": "2026-09-16T12:56:59.479Z",
+      "verificationSource": "return_url",
+      "transactionReference": "SATIM_TEST_1789563417814",
+      "paidAt": "2026-09-16T12:56:59.479Z"
+    },
+    {
+      "id": "pay_ORD_1789563379852_R3M7TQ",
+      "orderId": "ORD_1789563379852_R3M7TQ",
+      "userId": "test_merchant_1",
+      "userEmail": "merchant@example.com",
+      "userName": "محمد التاجر",
+      "userRole": "MERCHANT",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "amount": 999,
+      "currency": "DZD",
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "status": "paid",
+      "createdAt": "2026-09-16T12:56:19.853Z",
+      "updatedAt": "2026-09-16T12:56:29.060Z",
+      "metadata": {
+        "billingPeriod": "MONTHLY",
+        "durationDays": 30
+      },
+      "slickpayInvoiceId": "SP_INV_1789563379853_3256",
+      "slickpayPaymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563379852_R3M7TQ&invoiceId=SP_INV_1789563379853_3256&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+      "verifiedAt": "2026-09-16T12:56:21.965Z",
+      "verificationSource": "return_url",
+      "transactionReference": "SATIM_TEST_1789563389060",
+      "paidAt": "2026-09-16T12:56:29.060Z"
+    }
+  ],
+  "subscriptions": {
+    "test_merchant_1": {
+      "id": "sub_1789563410642_xjhio",
+      "userId": "test_merchant_1",
+      "planId": "plan_free",
+      "planTier": "FREE",
+      "planName": "الخطة المجانية (FREE)",
+      "status": "active",
+      "startDate": "2026-09-16T12:56:50.642Z",
+      "endDate": "2026-10-16T12:56:50.642Z",
+      "price": 0,
+      "paymentMethod": "FREE",
+      "createdAt": "2026-09-16T12:56:50.642Z",
+      "updatedAt": "2026-09-16T12:56:50.642Z",
+      "history": [
+        {
+          "action": "CREATED",
+          "timestamp": "2026-09-16T12:56:50.642Z",
+          "note": "تفعيل باقة [الخطة المجانية (FREE)] بنجاح عبر بوابة Slick-Pay SATIM بقيمة 0 دج"
+        }
+      ]
+    },
+    "test_merchant_2": {
+      "id": "sub_1789563419479_cxitz",
+      "userId": "test_merchant_2",
+      "userEmail": "merchant2@example.com",
+      "userName": "سمير بلخير",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "status": "active",
+      "startDate": "2026-09-16T12:56:59.479Z",
+      "endDate": "2026-10-16T12:56:59.479Z",
+      "price": 999,
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "lastPaymentId": "pay_ORD_1789563413349_GWCO1E",
+      "lastInvoiceId": "SP_INV_1789563413350_2931",
+      "transactionReference": "SATIM_TEST_1789563417814",
+      "createdAt": "2026-09-16T12:56:59.479Z",
+      "updatedAt": "2026-09-16T12:56:59.479Z",
+      "history": [
+        {
+          "action": "CREATED",
+          "timestamp": "2026-09-16T12:56:59.479Z",
+          "note": "تفعيل باقة [الخطة الاحترافية (PRO)] بنجاح عبر بوابة Slick-Pay SATIM بقيمة 999 دج",
+          "paymentId": "pay_ORD_1789563413349_GWCO1E"
+        }
+      ]
+    },
+    "test_merchant_3": {
+      "id": "sub_1789563459789_7ezad",
+      "userId": "test_merchant_3",
+      "userEmail": "merchant3@example.com",
+      "userName": "أمينة للتجارة",
+      "planId": "plan_business",
+      "planTier": "BUSINESS",
+      "planName": "خطة الأعمال (BUSINESS)",
+      "status": "active",
+      "startDate": "2026-09-16T12:57:39.789Z",
+      "endDate": "2026-10-16T12:57:39.789Z",
+      "price": 1999,
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "lastPaymentId": "pay_ORD_1789563430313_OT2UZD",
+      "lastInvoiceId": "SP_INV_1789563430315_30",
+      "transactionReference": "SATIM_REF_SP_INV_1789563430315_30",
+      "createdAt": "2026-09-16T12:57:39.789Z",
+      "updatedAt": "2026-09-16T12:57:39.789Z",
+      "history": [
+        {
+          "action": "CREATED",
+          "timestamp": "2026-09-16T12:57:39.789Z",
+          "note": "تفعيل باقة [خطة الأعمال (BUSINESS)] بنجاح عبر بوابة Slick-Pay SATIM بقيمة 1999 دج",
+          "paymentId": "pay_ORD_1789563430313_OT2UZD"
+        }
+      ]
+    },
+    "user_e2e_test": {
+      "id": "sub_1789563796638_g61nh",
+      "userId": "user_e2e_test",
+      "userEmail": "e2e@lbabeldar.dz",
+      "userName": "Test Merchant",
+      "planId": "plan_pro",
+      "planTier": "PRO",
+      "planName": "الخطة الاحترافية (PRO)",
+      "status": "active",
+      "startDate": "2026-09-16T13:03:16.638Z",
+      "endDate": "2026-10-16T13:03:16.638Z",
+      "price": 999,
+      "paymentMethod": "SLICK_PAY_SATIM",
+      "lastPaymentId": "pay_ORD_1789563796620_AYW488",
+      "lastInvoiceId": "SP_INV_1789563796621_5920",
+      "transactionReference": "SATIM_TEST_1789563796633",
+      "createdAt": "2026-09-16T13:03:16.638Z",
+      "updatedAt": "2026-09-16T13:03:16.638Z",
+      "history": [
+        {
+          "action": "CREATED",
+          "timestamp": "2026-09-16T13:03:16.638Z",
+          "note": "تفعيل باقة [الخطة الاحترافية (PRO)] بنجاح عبر بوابة Slick-Pay SATIM بقيمة 999 دج",
+          "paymentId": "pay_ORD_1789563796620_AYW488"
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "orderId": "ORD_1789563796620_AYW488",
+      "invoiceId": "SP_INV_1789563796621_5920",
+      "eventType": "PAYMENT_VERIFIED_RETURN_URL",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563796621_5920"
+      },
+      "id": "evt_1789563796628_onocg",
+      "timestamp": "2026-09-16T13:03:16.628Z"
+    },
+    {
+      "orderId": "ORD_1789563796620_AYW488",
+      "invoiceId": "SP_INV_1789563796621_5920",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563796621_5920",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563796620_AYW488&invoiceId=SP_INV_1789563796621_5920&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563796622_oevh9",
+      "timestamp": "2026-09-16T13:03:16.622Z"
+    },
+    {
+      "orderId": "ORD_1789563796620_AYW488",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "user_e2e_test",
+        "planId": "plan_pro",
+        "amount": 999
+      },
+      "id": "evt_1789563796621_uoiub",
+      "timestamp": "2026-09-16T13:03:16.621Z"
+    },
+    {
+      "orderId": "ORD_1789563785540_X46FSF",
+      "invoiceId": "SP_INV_1789563785541_5671",
+      "eventType": "PAYMENT_VERIFIED_RETURN_URL",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563785541_5671"
+      },
+      "id": "evt_1789563785561_qpulw",
+      "timestamp": "2026-09-16T13:03:05.561Z"
+    },
+    {
+      "orderId": "ORD_1789563785540_X46FSF",
+      "invoiceId": "SP_INV_1789563785541_5671",
+      "eventType": "PAYMENT_VERIFIED_RETURN_URL",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563785541_5671"
+      },
+      "id": "evt_1789563785551_ieeh8",
+      "timestamp": "2026-09-16T13:03:05.551Z"
+    },
+    {
+      "orderId": "ORD_1789563785540_X46FSF",
+      "invoiceId": "SP_INV_1789563785541_5671",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563785541_5671",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563785540_X46FSF&invoiceId=SP_INV_1789563785541_5671&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563785542_zsyui",
+      "timestamp": "2026-09-16T13:03:05.542Z"
+    },
+    {
+      "orderId": "ORD_1789563785540_X46FSF",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "user_e2e_test",
+        "planId": "plan_pro",
+        "amount": 999
+      },
+      "id": "evt_1789563785541_fpz2b",
+      "timestamp": "2026-09-16T13:03:05.541Z"
+    },
+    {
+      "orderId": "ORD_1789563762279_4KBZJT",
+      "invoiceId": "SP_INV_1789563762279_4522",
+      "eventType": "PAYMENT_VERIFIED_RETURN_URL",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563762279_4522"
+      },
+      "id": "evt_1789563762295_kkh4c",
+      "timestamp": "2026-09-16T13:02:42.295Z"
+    },
+    {
+      "orderId": "ORD_1789563762279_4KBZJT",
+      "invoiceId": "SP_INV_1789563762279_4522",
+      "eventType": "PAYMENT_VERIFIED_RETURN_URL",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563762279_4522"
+      },
+      "id": "evt_1789563762286_ro0kj",
+      "timestamp": "2026-09-16T13:02:42.286Z"
+    },
+    {
+      "orderId": "ORD_1789563762279_4KBZJT",
+      "invoiceId": "SP_INV_1789563762279_4522",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563762279_4522",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563762279_4KBZJT&invoiceId=SP_INV_1789563762279_4522&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563762280_lul3p",
+      "timestamp": "2026-09-16T13:02:42.280Z"
+    },
+    {
+      "orderId": "ORD_1789563762279_4KBZJT",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "user_e2e_test",
+        "planId": "plan_pro",
+        "amount": 999
+      },
+      "id": "evt_1789563762279_bdov4",
+      "timestamp": "2026-09-16T13:02:42.279Z"
+    },
+    {
+      "orderId": "ORD_1789563753254_6ERDLG",
+      "invoiceId": "SP_INV_1789563753255_7131",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563753255_7131",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563753254_6ERDLG&invoiceId=SP_INV_1789563753255_7131&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563753255_v8vet",
+      "timestamp": "2026-09-16T13:02:33.255Z"
+    },
+    {
+      "orderId": "ORD_1789563753254_6ERDLG",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "user_e2e_test",
+        "planId": "plan_pro",
+        "amount": 999
+      },
+      "id": "evt_1789563753254_om3g5",
+      "timestamp": "2026-09-16T13:02:33.254Z"
+    },
+    {
+      "orderId": "ORD_1789563718234_UE63KV",
+      "invoiceId": "SP_INV_1789563718235_3727",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563718235_3727",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563718234_UE63KV&invoiceId=SP_INV_1789563718235_3727&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563718235_46ljz",
+      "timestamp": "2026-09-16T13:01:58.235Z"
+    },
+    {
+      "orderId": "ORD_1789563718234_UE63KV",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "user_e2e_test",
+        "planId": "plan_pro",
+        "amount": 999
+      },
+      "id": "evt_1789563718234_fyjgv",
+      "timestamp": "2026-09-16T13:01:58.234Z"
+    },
+    {
+      "orderId": "ORD_1789563430313_OT2UZD",
+      "invoiceId": "SP_INV_1789563430315_30",
+      "eventType": "SUBSCRIPTION_ACTIVATED_WEBHOOK",
+      "status": "paid",
+      "details": {
+        "subscriptionId": "sub_1789563459789_7ezad",
+        "planTier": "BUSINESS"
+      },
+      "id": "evt_1789563459790_xkh65",
+      "timestamp": "2026-09-16T12:57:39.790Z"
+    },
+    {
+      "orderId": "ORD_1789563430313_OT2UZD",
+      "invoiceId": "SP_INV_1789563430315_30",
+      "eventType": "WEBHOOK_RECEIVED",
+      "status": "paid",
+      "details": {
+        "isPaid": true,
+        "transactionReference": "SATIM_REF_SP_INV_1789563430315_30"
+      },
+      "id": "evt_1789563459789_mvwvr",
+      "timestamp": "2026-09-16T12:57:39.789Z"
+    },
+    {
+      "orderId": "ORD_1789563430313_OT2UZD",
+      "invoiceId": "SP_INV_1789563430315_30",
+      "eventType": "WEBHOOK_RECEIVED",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563430315_30"
+      },
+      "id": "evt_1789563454011_0dgk0",
+      "timestamp": "2026-09-16T12:57:34.011Z"
+    },
+    {
+      "orderId": "ORD_1789563430313_OT2UZD",
+      "invoiceId": "SP_INV_1789563430315_30",
+      "eventType": "WEBHOOK_RECEIVED",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563430315_30"
+      },
+      "id": "evt_1789563433380_0wvkt",
+      "timestamp": "2026-09-16T12:57:13.380Z"
+    },
+    {
+      "orderId": "ORD_1789563430313_OT2UZD",
+      "invoiceId": "SP_INV_1789563430315_30",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563430315_30",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563430313_OT2UZD&invoiceId=SP_INV_1789563430315_30&amount=1999&planName=%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20(BUSINESS)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563430316_ru5w3",
+      "timestamp": "2026-09-16T12:57:10.316Z"
+    },
+    {
+      "orderId": "ORD_1789563430313_OT2UZD",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "test_merchant_3",
+        "planId": "plan_business",
+        "amount": 1999
+      },
+      "id": "evt_1789563430315_szcmx",
+      "timestamp": "2026-09-16T12:57:10.315Z"
+    },
+    {
+      "orderId": "ORD_1789563413349_GWCO1E",
+      "invoiceId": "SP_INV_1789563413350_2931",
+      "eventType": "SUBSCRIPTION_ACTIVATED",
+      "status": "paid",
+      "details": {
+        "userId": "test_merchant_2",
+        "subscriptionId": "sub_1789563419479_cxitz",
+        "planTier": "PRO",
+        "endDate": "2026-10-16T12:56:59.479Z"
+      },
+      "id": "evt_1789563419479_d2ipy",
+      "timestamp": "2026-09-16T12:56:59.479Z"
+    },
+    {
+      "orderId": "ORD_1789563413349_GWCO1E",
+      "invoiceId": "SP_INV_1789563413350_2931",
+      "eventType": "PAYMENT_VERIFIED_RETURN_URL",
+      "status": "paid",
+      "details": {
+        "isPaid": true,
+        "transactionReference": "SATIM_TEST_1789563417814"
+      },
+      "id": "evt_1789563419479_umokx",
+      "timestamp": "2026-09-16T12:56:59.479Z"
+    },
+    {
+      "orderId": "ORD_1789563413349_GWCO1E",
+      "invoiceId": "SP_INV_1789563413350_2931",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563413350_2931",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563413349_GWCO1E&invoiceId=SP_INV_1789563413350_2931&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563413350_1mli0",
+      "timestamp": "2026-09-16T12:56:53.350Z"
+    },
+    {
+      "orderId": "ORD_1789563413349_GWCO1E",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "test_merchant_2",
+        "planId": "plan_pro",
+        "amount": 999
+      },
+      "id": "evt_1789563413350_iegvr",
+      "timestamp": "2026-09-16T12:56:53.350Z"
+    },
+    {
+      "orderId": "ORD_1789563379852_R3M7TQ",
+      "invoiceId": "SP_INV_1789563379853_3256",
+      "eventType": "PAYMENT_VERIFIED_RETURN_URL",
+      "status": "pending",
+      "details": {
+        "isPaid": false,
+        "transactionReference": "SATIM_REF_SP_INV_1789563379853_3256"
+      },
+      "id": "evt_1789563381966_doh0n",
+      "timestamp": "2026-09-16T12:56:21.966Z"
+    },
+    {
+      "orderId": "ORD_1789563379852_R3M7TQ",
+      "invoiceId": "SP_INV_1789563379853_3256",
+      "eventType": "INVOICE_CREATED_SLICKPAY",
+      "status": "pending",
+      "details": {
+        "invoiceId": "SP_INV_1789563379853_3256",
+        "paymentUrl": "https://ais-dev-zq6t4gxzujcjr3zhadap3a-651949373631.europe-west2.run.app/payment/satim-mock?orderId=ORD_1789563379852_R3M7TQ&invoiceId=SP_INV_1789563379853_3256&amount=999&planName=%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9%20(PRO)",
+        "isSimulated": true
+      },
+      "id": "evt_1789563379854_t2mm4",
+      "timestamp": "2026-09-16T12:56:19.854Z"
+    },
+    {
+      "orderId": "ORD_1789563379852_R3M7TQ",
+      "eventType": "INVOICE_INITIALIZED",
+      "status": "pending",
+      "details": {
+        "userId": "test_merchant_1",
+        "planId": "plan_pro",
+        "amount": 999
+      },
+      "id": "evt_1789563379853_v3fiy",
+      "timestamp": "2026-09-16T12:56:19.853Z"
+    }
+  ]
+}

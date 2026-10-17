@@ -1,0 +1,6 @@
+{
+  "name": "لباب الدار",
+  "description": "منصة التوصيل والتسوق الجزائرية لباب الدار - سوق متكامل يربط الزبائن والتجار وعمال التوصيل",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

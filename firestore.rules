@@ -1,0 +1,261 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function hasRole(role) {
+      return isAuthenticated() && (
+        request.auth.token.role == role ||
+        getUserData().role == role
+      );
+    }
+
+    function isAdmin() {
+      return hasRole('ADMIN');
+    }
+
+    function isCourier() {
+      return hasRole('COURIER');
+    }
+
+    function isMerchant() {
+      return hasRole('MERCHANT');
+    }
+
+    function isCustomer() {
+      return hasRole('CUSTOMER');
+    }
+
+    function isDeliveryActive(status) {
+      return status in ['COURIER_ASSIGNED', 'PICKED_UP', 'ON_THE_WAY', 'ARRIVED'];
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+    }
+
+    // Customer Addresses
+    match /customer_addresses/{addressId} {
+      allow read: if isAuthenticated() && (resource.data.customerId == request.auth.uid || isAdmin());
+      allow create: if isAuthenticated() && request.resource.data.customerId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && (resource.data.customerId == request.auth.uid || isAdmin());
+    }
+
+    // Favorites
+    match /favorites/{favId} {
+      allow read: if isAuthenticated() && (resource.data.customerId == request.auth.uid || isAdmin());
+      allow create: if isAuthenticated() && request.resource.data.customerId == request.auth.uid;
+      allow delete: if isAuthenticated() && (resource.data.customerId == request.auth.uid || isAdmin());
+    }
+
+    // Reviews collection (read by everyone, created by customers for completed orders)
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && request.resource.data.customerId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && (resource.data.customerId == request.auth.uid || isAdmin());
+    }
+
+    // Notifications
+    match /notifications/{notifId} {
+      allow read, update: if isAuthenticated() && (resource.data.customerId == request.auth.uid || isAdmin());
+      allow create: if isAuthenticated();
+      allow delete: if isAuthenticated() && (resource.data.customerId == request.auth.uid || isAdmin());
+    }
+
+    // Promotions
+    match /promotions/{promoId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Settings
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Stores collection
+    match /stores/{storeId} {
+      allow read: if true;
+      allow write: if isAuthenticated() && (
+        isAdmin() ||
+        (isMerchant() && resource.data.merchantId == request.auth.uid)
+      );
+    }
+
+    // Products collection
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAuthenticated() && (
+        isAdmin() ||
+        isMerchant()
+      );
+    }
+
+    // Orders collection
+    match /orders/{orderId} {
+      // Customers can read their own order
+      // Merchants can read orders belonging to their store
+      // Couriers can read orders assigned to them
+      // Admins can read all orders
+      allow read: if isAuthenticated() && (
+        isAdmin() ||
+        resource.data.customerId == request.auth.uid ||
+        (isMerchant() && resource.data.merchantId == request.auth.uid) ||
+        (isCourier() && resource.data.courierId == request.auth.uid)
+      );
+
+      allow create: if isAuthenticated();
+
+      // Updates restricted by role and status transition
+      allow update: if isAuthenticated() && (
+        isAdmin() ||
+        // Customer can cancel only if still pending
+        (resource.data.customerId == request.auth.uid && request.resource.data.status == 'CANCELLED' && resource.data.status == 'PENDING') ||
+        // Merchant updates order acceptance, prep, and ready
+        (isMerchant() && resource.data.merchantId == request.auth.uid) ||
+        // Courier can update their active delivery status and throttled location
+        (isCourier() && resource.data.courierId == request.auth.uid && isDeliveryActive(resource.data.status))
+      );
+
+      allow delete: if isAdmin();
+    }
+
+    // Deliveries collection (live telemetry & route tracking)
+    match /deliveries/{deliveryId} {
+      // Read:
+      // - Admins
+      // - The assigned courier
+      // - The customer ONLY while the delivery is active (privacy protection)
+      // Arbitrary users CANNOT read courier locations.
+      allow read: if isAuthenticated() && (
+        isAdmin() ||
+        resource.data.courierId == request.auth.uid ||
+        (resource.data.customerId == request.auth.uid && isDeliveryActive(resource.data.status))
+      );
+
+      // Create: Courier accepting delivery or Admin
+      allow create: if isAuthenticated() && (isAdmin() || isCourier());
+
+      // Update:
+      // Couriers can only update their own active delivery location & valid status transitions
+      allow update: if isAuthenticated() && (
+        isAdmin() ||
+        (
+          resource.data.courierId == request.auth.uid &&
+          isDeliveryActive(resource.data.status) &&
+          // Cannot modify other sensitive fields like OTP directly without validation
+          (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['deliveryOtp', 'customerId', 'storeId']))
+        )
+      );
+
+      allow delete: if isAdmin();
+    }
+
+    // Courier Profiles
+    match /couriers/{courierId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (
+        isAdmin() ||
+        request.auth.uid == courierId ||
+        request.auth.uid == resource.data.userId
+      );
+    }
+
+    // Physical Branches
+    match /branches/{branchId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // Financial & Payment Settings
+    match /financial_settings/{settingId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    match /payment_settings/{settingId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    match /commission_settings/{settingId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // User Payment Profiles (CCP / CIB / Branch preference)
+    match /payment_profiles/{profileId} {
+      allow read: if isAuthenticated() && (
+        isAdmin() ||
+        resource.data.userId == request.auth.uid ||
+        profileId == request.auth.uid
+      );
+      allow create: if isAuthenticated() && (
+        isAdmin() ||
+        request.resource.data.userId == request.auth.uid ||
+        profileId == request.auth.uid
+      );
+      allow update: if isAuthenticated() && (
+        isAdmin() ||
+        (resource.data.userId == request.auth.uid && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['verificationStatus', 'reviewedAt', 'reviewedBy'])))
+      );
+      allow delete: if isAdmin();
+    }
+
+    // Withdrawal Requests
+    match /withdrawal_requests/{requestId} {
+      // Merchants and couriers can read their own requests; admins can read all
+      allow read: if isAuthenticated() && (
+        isAdmin() ||
+        resource.data.userId == request.auth.uid
+      );
+
+      // Only merchants and couriers can submit withdrawal requests for their own account
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid &&
+        (isMerchant() || isCourier()) &&
+        request.resource.data.amount > 0;
+
+      // Users can only cancel their own pending requests; admin processes approvals/rejections
+      allow update: if isAuthenticated() && (
+        isAdmin() ||
+        (
+          resource.data.userId == request.auth.uid &&
+          resource.data.status == 'PENDING' &&
+          request.resource.data.status == 'CANCELLED'
+        )
+      );
+
+      allow delete: if isAdmin();
+    }
+
+    // Financial Transaction Ledger (Immutable except for Admin settlements)
+    match /transactions/{transactionId} {
+      allow read: if isAuthenticated() && (
+        isAdmin() ||
+        resource.data.userId == request.auth.uid
+      );
+      // Transactions are authored by trusted system operations/admins
+      allow create, update: if isAuthenticated() && isAdmin();
+      allow delete: if false; // Financial ledger is permanent
+    }
+
+    // Audit Trail (System Logs)
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAuthenticated();
+      allow update, delete: if false; // Immutable audit log
+    }
+  }
+}
