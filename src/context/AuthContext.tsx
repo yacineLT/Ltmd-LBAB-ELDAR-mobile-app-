@@ -7,8 +7,7 @@ interface AuthContextType {
   role: UserRole | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, pass: string) => Promise<{ success: boolean; error?: string }>;
-  loginAsRole: (role: UserRole) => void;
+  login: (email: string, pass: string) => Promise<{ success: boolean; user?: User; error?: string }>;
   register: (data: {
     fullName: string;
     email: string;
@@ -17,10 +16,9 @@ interface AuthContextType {
     password?: string;
     storeName?: string;
     vehicleType?: 'MOTORCYCLE' | 'CAR' | 'BICYCLE' | 'VAN';
-  }) => Promise<{ success: boolean; error?: string }>;
+  }) => Promise<{ success: boolean; user?: User; error?: string }>;
   logout: () => void;
   resetPassword: (email: string) => Promise<{ success: boolean; message: string }>;
-  switchUserRole: (role: UserRole) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -32,19 +30,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Check persistent session
+    // Check persistent session from actual logged in user
     const storedUserId = localStorage.getItem(CURRENT_USER_KEY);
     if (storedUserId) {
       const user = dbService.getUserById(storedUserId);
       if (user && user.isActive) {
         setCurrentUser(user);
-      }
-    } else {
-      // Default to customer demo for immediate pleasant exploration
-      const defaultUser = dbService.getUserByEmail('client@lbabdar.dz');
-      if (defaultUser) {
-        setCurrentUser(defaultUser);
-        localStorage.setItem(CURRENT_USER_KEY, defaultUser.id);
+      } else {
+        localStorage.removeItem(CURRENT_USER_KEY);
       }
     }
     setIsLoading(false);
@@ -60,9 +53,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => unsubscribe();
   }, []);
 
-  const login = async (email: string, _pass: string): Promise<{ success: boolean; error?: string }> => {
+  const login = async (email: string, _pass: string): Promise<{ success: boolean; user?: User; error?: string }> => {
     setIsLoading(true);
-    // Simulate brief network latency
     await new Promise((r) => setTimeout(r, 400));
     const user = dbService.getUserByEmail(email.trim());
 
@@ -79,7 +71,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCurrentUser(user);
     localStorage.setItem(CURRENT_USER_KEY, user.id);
     setIsLoading(false);
-    return { success: true };
+    return { success: true, user };
   };
 
   const register = async (data: {
@@ -87,9 +79,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     email: string;
     phone: string;
     role: 'CUSTOMER' | 'MERCHANT' | 'COURIER';
+    password?: string;
     storeName?: string;
     vehicleType?: 'MOTORCYCLE' | 'CAR' | 'BICYCLE' | 'VAN';
-  }): Promise<{ success: boolean; error?: string }> => {
+  }): Promise<{ success: boolean; user?: User; error?: string }> => {
     setIsLoading(true);
     await new Promise((r) => setTimeout(r, 500));
 
@@ -116,7 +109,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         id: storeId,
         merchantId: newUserId,
         name: data.storeName || 'متجر ' + data.fullName,
-        description: 'متجر مسجل حديثاً في منصة لباب الدار، مرحباً بكم!',
+        description: 'متجر مسجل في منصة لباب الدار، مرحباً بكم!',
         category: 'cat_restaurants',
         logoUrl: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=300&auto=format&fit=crop&q=80',
         coverUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1000&auto=format&fit=crop&q=80',
@@ -176,7 +169,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCurrentUser(newUser);
     localStorage.setItem(CURRENT_USER_KEY, newUser.id);
     setIsLoading(false);
-    return { success: true };
+    return { success: true, user: newUser };
   };
 
   const logout = () => {
@@ -192,17 +185,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     return {
       success: true,
-      message: 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح (محاكاة أمنية).',
+      message: 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح.',
     };
-  };
-
-  const switchUserRole = (targetRole: UserRole) => {
-    const users = dbService.getUsers();
-    const candidate = users.find((u) => u.role === targetRole);
-    if (candidate) {
-      setCurrentUser(candidate);
-      localStorage.setItem(CURRENT_USER_KEY, candidate.id);
-    }
   };
 
   return (
@@ -213,11 +197,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAuthenticated: !!currentUser,
         isLoading,
         login,
-        loginAsRole: switchUserRole,
         register,
         logout,
         resetPassword,
-        switchUserRole,
       }}
     >
       {children}

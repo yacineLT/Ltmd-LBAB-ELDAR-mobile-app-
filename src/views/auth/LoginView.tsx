@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useRouter, Link } from '../../router/Router';
-import { ShoppingBag, Lock, Mail, ArrowLeft, AlertCircle, Sparkles } from 'lucide-react';
-import { UserRole } from '../../types';
+import { ShoppingBag, Lock, Mail, AlertCircle } from 'lucide-react';
 
 export const LoginView: React.FC = () => {
-  const { login, loginAsRole } = useAuth();
+  const { login } = useAuth();
   const { navigate } = useRouter();
 
   const [email, setEmail] = useState('');
@@ -19,21 +18,26 @@ export const LoginView: React.FC = () => {
     setLoading(true);
 
     try {
-      await login(email, password);
-      navigate('/');
+      const res = await login(email, password);
+      if (res.success && res.user) {
+        // Automatic redirection to the appropriate dashboard based on genuine role
+        if (res.user.role === 'MERCHANT') {
+          navigate('/merchant');
+        } else if (res.user.role === 'COURIER') {
+          navigate('/courier/dashboard');
+        } else if (res.user.role === 'ADMIN') {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/');
+        }
+      } else if (res.error) {
+        setError(res.error);
+      }
     } catch (err: any) {
       setError(err.message || 'خطأ في البريد الإلكتروني أو كلمة المرور');
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleQuickDemoLogin = (role: UserRole) => {
-    loginAsRole(role);
-    if (role === 'MERCHANT') navigate('/merchant');
-    else if (role === 'COURIER') navigate('/courier/dashboard');
-    else if (role === 'ADMIN') navigate('/admin/dashboard');
-    else navigate('/');
   };
 
   return (
@@ -50,7 +54,7 @@ export const LoginView: React.FC = () => {
         </Link>
         <h2 className="text-xl font-bold text-neutral-900 mt-4">تسجيل الدخول إلى حسابك</h2>
         <p className="text-xs text-neutral-500 mt-1">
-          أدخل بياناتك للمتابعة أو استخدم أزرار الدخول السريع التجريبية
+          أدخل بيانات حسابك المعتمدة للمتابعة إلى لوحة التحكم الخاصة بك
         </p>
       </div>
 
@@ -97,57 +101,18 @@ export const LoginView: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-[#FF6600] hover:bg-[#E65C00] text-white font-bold text-sm rounded-xl shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full py-3 bg-[#FF6600] hover:bg-[#E65C00] text-white font-bold text-sm rounded-xl shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
           >
-            {loading ? <span>جاري تسجيل الدخول...</span> : <span>دخول</span>}
+            {loading ? <span>جاري تسجيل الدخول...</span> : <span>تسجيل الدخول</span>}
           </button>
         </form>
 
-        {/* Quick Demo Access Bar */}
-        <div className="pt-4 border-t border-neutral-100 space-y-3">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-neutral-600">
-            <Sparkles className="w-3.5 h-3.5 text-[#FF6600]" />
-            <span>تسجيل دخول سريع بحساب تجريبي (1-Click):</span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2 text-xs font-bold">
-            <button
-              type="button"
-              onClick={() => handleQuickDemoLogin('CUSTOMER')}
-              className="p-2 rounded-xl bg-neutral-50 hover:bg-neutral-100 text-neutral-800 border border-neutral-200 transition"
-            >
-              حساب زبون
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickDemoLogin('MERCHANT')}
-              className="p-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition"
-            >
-              حساب تاجر
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickDemoLogin('COURIER')}
-              className="p-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition"
-            >
-              كابتن توصيل
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickDemoLogin('ADMIN')}
-              className="p-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 transition"
-            >
-              مسؤول منصة
-            </button>
-          </div>
-        </div>
-
         {/* Register link */}
-        <div className="text-center pt-2">
+        <div className="text-center pt-4 border-t border-neutral-100">
           <p className="text-xs text-neutral-500">
             ليس لديك حساب بعد؟{' '}
             <Link to="/register" className="font-bold text-[#FF6600] hover:underline">
-              سجل حساب جديد مجاناً
+              سجل حساب جديد في المنصة
             </Link>
           </p>
         </div>

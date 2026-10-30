@@ -58,7 +58,6 @@ fun LbabDarApp(repository: LbabDarRepository = remember { LbabDarRepository() })
 
     var currentWilaya by remember { mutableStateOf("الجزائر العاصمة") }
     var showWilayaModal by remember { mutableStateOf(false) }
-    var showRoleModal by remember { mutableStateOf(false) }
     var orderToReview by remember { mutableStateOf<Order?>(null) }
 
     // Back handling
@@ -78,7 +77,6 @@ fun LbabDarApp(repository: LbabDarRepository = remember { LbabDarRepository() })
                 currentWilaya = currentWilaya,
                 currentRole = currentUser.role,
                 cartItemCount = cart.values.sum(),
-                onRoleSwitcherClick = { showRoleModal = true },
                 onCartClick = {
                     selectedStore = null
                     selectedOrder = null
@@ -260,19 +258,7 @@ fun LbabDarApp(repository: LbabDarRepository = remember { LbabDarRepository() })
         }
     }
 
-    // Role Switcher Modal
-    if (showRoleModal) {
-        RoleSwitcherModal(
-            currentRole = currentUser.role,
-            onSelectRole = { role ->
-                repository.switchUserRole(role)
-                selectedStore = null
-                selectedOrder = null
-                currentCustomerTab = CustomerScreenTab.HOME
-            },
-            onDismiss = { showRoleModal = false }
-        )
-    }
+
 
     // Wilaya Selector Modal
     if (showWilayaModal) {

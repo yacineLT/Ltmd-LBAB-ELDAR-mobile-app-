@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 
 export const ProfileView: React.FC = () => {
-  const { currentUser, role, logout, switchUserRole } = useAuth();
+  const { currentUser, role, logout } = useAuth();
   const { location, openMap, setLocation } = useLocation();
   const { navigate } = useRouter();
 
@@ -485,61 +485,6 @@ export const ProfileView: React.FC = () => {
                 <ChevronLeft className="w-4 h-4 text-purple-500" />
               </Link>
             )}
-          </div>
-        </div>
-
-        {/* Role Switcher Sandbox */}
-        <div className="bg-gray-50 p-6 rounded-2xl border border-gray-200 space-y-4">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#1A1A1B]">
-            <Shield className="w-4 h-4 text-[#F27D26]" />
-            <span>تبديل الحساب التجريبي لاختبار الأدوار الأربعة:</span>
-          </div>
-          <p className="text-[11px] text-gray-500">
-            يمكنك الانتقال فوراً بين حساب الزبون، التاجر، كابتن التوصيل، أو مسؤول النظام لمعاينة الواجهات:
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-bold">
-            <button
-              onClick={() => switchUserRole('CUSTOMER')}
-              className={`p-2.5 rounded-xl border transition cursor-pointer ${
-                role === 'CUSTOMER' ? 'bg-[#F27D26] text-white border-[#F27D26]' : 'bg-white hover:bg-gray-100 text-gray-800'
-              }`}
-            >
-              زبون (Customer)
-            </button>
-            <button
-              onClick={() => {
-                switchUserRole('MERCHANT');
-                navigate('/merchant');
-              }}
-              className={`p-2.5 rounded-xl border transition cursor-pointer ${
-                role === 'MERCHANT' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white hover:bg-gray-100 text-gray-800'
-              }`}
-            >
-              تاجر (Merchant)
-            </button>
-            <button
-              onClick={() => {
-                switchUserRole('COURIER');
-                navigate('/courier/dashboard');
-              }}
-              className={`p-2.5 rounded-xl border transition cursor-pointer ${
-                role === 'COURIER' ? 'bg-amber-600 text-white border-amber-600' : 'bg-white hover:bg-gray-100 text-gray-800'
-              }`}
-            >
-              كابتن (Courier)
-            </button>
-            <button
-              onClick={() => {
-                switchUserRole('ADMIN');
-                navigate('/admin/dashboard');
-              }}
-              className={`p-2.5 rounded-xl border transition cursor-pointer ${
-                role === 'ADMIN' ? 'bg-purple-600 text-white border-purple-600' : 'bg-white hover:bg-gray-100 text-gray-800'
-              }`}
-            >
-              مسؤول (Admin)
-            </button>
           </div>
         </div>
 

@@ -3,7 +3,6 @@ import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { LocationProvider, useLocation } from './context/LocationContext';
 import { RouterProvider, useRouter, ProtectedRoute } from './router/Router';
-import { RoleSwitcher } from './components/common/RoleSwitcher';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
@@ -120,9 +119,6 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F9FAFB] text-[#1A1A1B] selection:bg-[#F27D26]/20 selection:text-[#F27D26]">
-      {/* Top Demo Persona Switcher */}
-      <RoleSwitcher />
-
       {/* Main Navbar */}
       {!isAuthPage && <Navbar />}
 

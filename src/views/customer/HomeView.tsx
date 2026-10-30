@@ -182,7 +182,7 @@ export const HomeView: React.FC = () => {
           {/* Active Order Preview Card - Frosted Glass Surface */}
           <div className="lg:col-span-4 bg-white/80 backdrop-blur-xl p-5 rounded-3xl shadow-[0_10px_30px_rgba(15,23,42,0.06)] border border-white/80 relative">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-gray-500">طلب نشط تجريبي</span>
+              <span className="text-xs font-bold text-gray-500">حالة الطلب المباشرة</span>
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-500/12 text-[#FF6600] border border-orange-500/20 backdrop-blur-xs">
                 في الطريق إليك
               </span>

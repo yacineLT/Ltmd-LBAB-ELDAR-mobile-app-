@@ -160,12 +160,10 @@ export const DeliveryOtpModal: React.FC<DeliveryOtpModalProps> = ({
           </div>
         )}
 
-        {/* Demo Hint for Tester */}
-        <div className="mb-5 p-2.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-800 text-right flex items-center justify-between">
-          <span>رمز الاختبار الخاص بهذا الطلب:</span>
-          <span className="font-mono font-bold text-sm text-[#FF6600] tracking-wider px-2 py-0.5 bg-white rounded-lg border border-amber-300">
-            {order.deliveryOtp || '4821'}
-          </span>
+        {/* Production Courier Instruction */}
+        <div className="mb-5 p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-600 text-right flex items-center gap-2">
+          <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+          <span>يرجى طلب رمز التسليم المكون من 4 أرقام مباشرة من العميل للتحقق من الاستلام وإتمام العملية.</span>
         </div>
 
         {/* Submit Action */}

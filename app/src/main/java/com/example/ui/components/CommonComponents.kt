@@ -56,7 +56,6 @@ fun LbabTopAppBar(
     currentWilaya: String,
     currentRole: UserRole,
     cartItemCount: Int,
-    onRoleSwitcherClick: () -> Unit,
     onCartClick: () -> Unit,
     onWilayaClick: () -> Unit
 ) {
@@ -126,14 +125,13 @@ fun LbabTopAppBar(
                 }
             }
 
-            // Right Actions: Persona Switcher and Cart
+            // Right Actions: Role Badge and Cart
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // Persona / Role Switcher Button
+                // Role Badge (Informative indicator)
                 Surface(
-                    onClick = onRoleSwitcherClick,
                     shape = RoundedCornerShape(20.dp),
                     color = when (currentRole) {
                         UserRole.CUSTOMER -> OrangeLight
@@ -210,92 +208,7 @@ fun LbabTopAppBar(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun RoleSwitcherModal(
-    currentRole: UserRole,
-    onSelectRole: (UserRole) -> Unit,
-    onDismiss: () -> Unit
-) {
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        sheetState = rememberModalBottomSheetState(),
-        containerColor = MaterialTheme.colorScheme.surface
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "تبديل الحساب التجريبي",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Text(
-                text = "اختر دور المستخدم لاختبار خصائص المنصة المتكاملة",
-                fontSize = 13.sp,
-                color = TextSecondary,
-                modifier = Modifier.padding(top = 4.dp, bottom = 16.dp)
-            )
 
-            val roles = listOf(
-                Triple(UserRole.CUSTOMER, "الزبون (أمين بن علي)", "تصفح المتاجر، السلة، تتبع الطلب"),
-                Triple(UserRole.MERCHANT, "التاجر (الحاج رشيد بلقاسم)", "إدارة المتجر والطلبات والمحفظة المالية"),
-                Triple(UserRole.COURIER, "عامل التوصيل (ياسين بوزيد)", "استقبال الطلبات، مسار التوصيل، رمز التحقق"),
-                Triple(UserRole.ADMIN, "مدير المنصة (طه لحراوة)", "الرقابة المالية، الفروع، السحوبات المالية")
-            )
-
-            roles.forEach { (role, title, desc) ->
-                val isSelected = currentRole == role
-                Surface(
-                    onClick = {
-                        onSelectRole(role)
-                        onDismiss()
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp),
-                    shape = RoundedCornerShape(12.dp),
-                    color = if (isSelected) OrangeLight else MaterialTheme.colorScheme.surfaceVariant,
-                    border = if (isSelected) androidx.compose.foundation.BorderStroke(1.5.dp, OrangePrimary) else null
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = title,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 15.sp,
-                                color = if (isSelected) OrangePrimaryDark else MaterialTheme.colorScheme.onSurface
-                            )
-                            Text(
-                                text = desc,
-                                fontSize = 12.sp,
-                                color = TextSecondary
-                            )
-                        }
-                        if (isSelected) {
-                            Icon(
-                                imageVector = Icons.Default.CheckCircle,
-                                contentDescription = null,
-                                tint = OrangePrimary
-                            )
-                        }
-                    }
-                }
-            }
-            Spacer(modifier = Modifier.height(24.dp))
-        }
-    }
-}
 
 @Composable
 fun DeliveryOtpDialog(
@@ -337,16 +250,9 @@ fun DeliveryOtpDialog(
                 )
                 if (isError) {
                     Text(
-                        text = "الرمز غير صحيح! الرمز الصحيح للتجربة هو: $correctOtp",
+                        text = "رمز التحقق غير صحيح، يرجى مراجعة العميل والمحاولة مجددًا",
                         color = RoseError,
                         fontSize = 12.sp,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
-                } else {
-                    Text(
-                        text = "(رمز الاختبار السريع: $correctOtp)",
-                        color = TextMuted,
-                        fontSize = 11.sp,
                         modifier = Modifier.padding(top = 4.dp)
                     )
                 }
